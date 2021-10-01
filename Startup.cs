@@ -1,6 +1,7 @@
 using TodoApi.API.Services;
 using TodoApi.API.Interfaces;
 using TodoApi.API.Extensions;
+using TodoApi.API.Middleware;
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -46,13 +47,8 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi v1"));
-            }
-
+            app.UseMiddleware<ExceptionMiddleware>();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
