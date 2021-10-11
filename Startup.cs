@@ -37,10 +37,6 @@ namespace TodoApi
         {
             services.AddApplicationServices(_config);
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoApi", Version = "v1" });
-            }); 
             services.AddIdentityServices(_config);
         }
 
